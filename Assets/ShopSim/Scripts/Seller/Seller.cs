@@ -29,11 +29,14 @@ namespace ShopSim.Scripts.Seller
             _dialogue.localScale = Vector3.zero;
         }
 
-        public void Initialize(Transform movePosition1, Transform movePosition2, Transform queuePosition)
+        public void Initialize(Transform movePosition1, Transform movePosition2, Transform movePosition3, Transform movePosition4, Transform queuePosition)
         {
-            _positions = new Transform[] { movePosition1, movePosition2, queuePosition };
+            _positions = new Transform[] { movePosition1, movePosition2, movePosition3, movePosition4, queuePosition };
             _currentTargetIndex = 0;
             _initialized = true;
+            
+            if (_positions.Length > 0)
+                transform.forward = (_positions[0].position - transform.position).normalized;
         }
 
         private void Update()
@@ -57,7 +60,7 @@ namespace ShopSim.Scripts.Seller
 
             transform.position += direction * _speed * Time.deltaTime;
 
-            if (direction != Vector3.zero)
+            if (direction.sqrMagnitude > 0.001f)
                 transform.forward = Vector3.Lerp(transform.forward, direction, Time.deltaTime * 5f);
 
             _animator.SetBool("IsWalking", true);
