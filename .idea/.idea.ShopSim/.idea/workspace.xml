@@ -6,9 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="e05062a5-b817-49c3-80cf-1c1d3cd5bb59" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ShopSim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShopSim/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Prefabs/Seller.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Prefabs/Seller.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/Seller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/Seller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/SellersManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/SellersManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/BuyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/BuyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/QueueFirstTrigger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/QueueFirstTrigger.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/Seller.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/Seller.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/SellersManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/SellersManager.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +23,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/QueueFirstTrigger.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/SellersManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/Item.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/ItemRarity.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -94,7 +101,7 @@
       <updated>1746551708160</updated>
       <workItem from="1746551708162" duration="407000" />
       <workItem from="1746567470236" duration="1530000" />
-      <workItem from="1746569026729" duration="2666000" />
+      <workItem from="1746569026729" duration="8714000" />
     </task>
     <servers />
   </component>

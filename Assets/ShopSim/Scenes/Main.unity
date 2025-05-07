@@ -1576,7 +1576,7 @@ Transform:
   m_GameObject: {fileID: 436779627}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -12.57, y: -0.0073878765, z: -5.620861}
+  m_LocalPosition: {x: -11.11, y: -0.0073878765, z: -5.620861}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3058,7 +3058,7 @@ Transform:
   m_GameObject: {fileID: 781503481}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -10.86, y: -0.0073878765, z: -5.620861}
+  m_LocalPosition: {x: -9.4, y: -0.0073878765, z: -5.620861}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5356,7 +5356,7 @@ Transform:
   m_GameObject: {fileID: 1219559671}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -8.69, y: -0.0073878765, z: -5.620861}
+  m_LocalPosition: {x: -7.2299995, y: -0.0073878765, z: -5.620861}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6558,7 +6558,10 @@ MonoBehaviour:
   - {fileID: 436779628}
   - {fileID: 781503482}
   - {fileID: 1219559672}
-  _seller: {fileID: 6631700545791036271, guid: d84bcf3031ca3734286bd4c6834a40b9, type: 3}
+  _itemIcons:
+  - {fileID: 21300000, guid: a50d37232e4354a338451f145fb124fb, type: 3}
+  - {fileID: 21300000, guid: cd028212deac9db42a7d6df6e01fbb2a, type: 3}
+  _sellerPrefab: {fileID: 6631700545791036271, guid: d84bcf3031ca3734286bd4c6834a40b9, type: 3}
 --- !u!4 &1411107778
 Transform:
   m_ObjectHideFlags: 0
@@ -7113,7 +7116,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1645694521}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6533817807525388832}
+        m_TargetAssemblyTypeName: ShopSim.Scripts.BuyController, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1645694521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8919,7 +8934,7 @@ Transform:
   m_GameObject: {fileID: 2144359944}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -14.27, y: -0.0073878765, z: -5.620861}
+  m_LocalPosition: {x: -12.81, y: -0.0073878765, z: -5.620861}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10785,6 +10800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5901712230308411557}
   - component: {fileID: 506431575678886623}
+  - component: {fileID: 6533817807525388832}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -10792,6 +10808,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6533817807525388832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6533817807525388831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc225cde12ff3a54bb8bf95717f133e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiButtonScaleTimeIn: 1.5
+  _uiButtonScaleTimeOut: 0.15
+  _uiButtonBuy: {fileID: 1645694519}
+  _uiButtonCheck: {fileID: 602153897}
+  _uiButtonDeny: {fileID: 489865183}
 --- !u!1 &6539147755995698372
 GameObject:
   m_ObjectHideFlags: 0

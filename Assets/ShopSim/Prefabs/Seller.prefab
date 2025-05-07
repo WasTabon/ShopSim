@@ -1992,6 +1992,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c639201af899304399ad147cdce9d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemIcon: {fileID: 4516455257081740859}
+  _uiDialogueScaleTimeIn: 0.5
+  _uiDialogueScaleTimeOut: 0.5
 --- !u!65 &8193224813479005932
 BoxCollider:
   m_ObjectHideFlags: 0
