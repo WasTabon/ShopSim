@@ -11,6 +11,7 @@ namespace ShopSim.Scripts.Sellers
         public Sprite GetIcon() => _icon;
         public ItemRarity GetRarity() => _rarity;
         public int GetPrice() => _price;
+        public string GetName() => _icon.name;
         
         public Item(Sprite icon, ItemRarity rarity, int price)
         {

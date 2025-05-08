@@ -8,7 +8,7 @@ namespace ShopSim.Scripts.Sellers
         {
             if (coll.TryGetComponent(out Seller seller))
             {
-                seller.HandleFinishQueue();
+                seller.HandleOnSeller();
             }
         }
     }

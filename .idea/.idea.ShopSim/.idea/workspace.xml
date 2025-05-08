@@ -9,13 +9,10 @@
       <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Prefabs/Seller.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Prefabs/Seller.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scenes/Main.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/BuyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/BuyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/QueueFirstTrigger.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/QueueFirstTrigger.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/Seller.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/Seller.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/SellersManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Seller/SellersManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/Item.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/QueueFirstTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/QueueFirstTrigger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/Seller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/Seller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/SellersManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/SellersManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +22,8 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/Item.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/ItemRarity.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/ShopZone.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/UISoundsManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -101,7 +100,8 @@
       <updated>1746551708160</updated>
       <workItem from="1746551708162" duration="407000" />
       <workItem from="1746567470236" duration="1530000" />
-      <workItem from="1746569026729" duration="8714000" />
+      <workItem from="1746569026729" duration="9349000" />
+      <workItem from="1746653692525" duration="9838000" />
     </task>
     <servers />
   </component>

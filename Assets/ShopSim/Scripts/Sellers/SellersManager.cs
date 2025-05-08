@@ -26,7 +26,7 @@ namespace ShopSim.Scripts.Sellers
         {
             _sellersQueue = new Queue<Seller>();
             
-            InvokeRepeating("SpawnSeller", 0f, 1f);
+            InvokeRepeating("SpawnSeller", 0f, 15f);
         }
         
         private void MoveSellerQueue()
