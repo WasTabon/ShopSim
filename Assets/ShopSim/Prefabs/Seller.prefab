@@ -1997,6 +1997,8 @@ MonoBehaviour:
   _uiDialogueScaleTimeIn: 0.5
   _uiDialogueScaleTimeOut: 0.5
   _greetingSound: {fileID: 8300000, guid: 00e974e7de0bb4243b61f1ebeb262987, type: 3}
+  _soldSound: {fileID: 8300000, guid: 41956d43eda0e454687b85b91a1ff3fd, type: 3}
+  _denySound: {fileID: 8300000, guid: 31daf89919fe74880b955d37c6bc20f7, type: 3}
   _insideWalkSounds:
   - {fileID: 8300000, guid: 64a48ff632c18414bacbb5c20e98761d, type: 3}
   - {fileID: 8300000, guid: 2f9c50e78af284e5995333d610bf4124, type: 3}

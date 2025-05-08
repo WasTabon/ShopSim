@@ -13,6 +13,7 @@ namespace ShopSim.Scripts.Sellers
         [SerializeField] private Transform _movePoint4;
 
         [SerializeField] private Transform[] queuePoints = new Transform[5];
+        [SerializeField] private Transform[] wayBack;
 
         [SerializeField] private Sprite[] _itemIcons;
         
@@ -32,7 +33,7 @@ namespace ShopSim.Scripts.Sellers
         private void MoveSellerQueue()
         {
             Seller seller = _sellersQueue.Dequeue();
-            seller.gameObject.SetActive(false);
+            //seller.gameObject.SetActive(false);
             
             Seller[] array = _sellersQueue.ToArray();
             
@@ -56,7 +57,7 @@ namespace ShopSim.Scripts.Sellers
             GameObject spawned = Instantiate(_sellerPrefab, _spawnPoint.position, Quaternion.identity);
             Seller spawnedSeller = spawned.GetComponent<Seller>();
             
-            spawnedSeller.Initialize(_movePoint1, _movePoint2,_movePoint3, _movePoint4, queuePoints[_sellersQueue.Count], item);
+            spawnedSeller.Initialize(_movePoint1, _movePoint2,_movePoint3, _movePoint4, queuePoints[_sellersQueue.Count], item, wayBack);
             
             _sellersQueue.Enqueue(spawnedSeller);
             spawnedSeller.OnItemComplete += MoveSellerQueue;
@@ -69,7 +70,12 @@ namespace ShopSim.Scripts.Sellers
             Sprite randomIcon = _itemIcons[randomNumber];
             ItemRarity randomRarity = GetRandomRarity();
             int randomPrice = GetRandomPrice();
-            return new Item(randomIcon, randomRarity, randomPrice);
+            int randomFake = Random.Range(1, 100);
+            bool isFake = randomFake <= 25;
+            int randomDirty = Random.Range(1, 100);
+            bool isDirty = randomDirty <= 25;
+            
+            return new Item(randomIcon, randomRarity, randomPrice, isFake, isDirty);
         }
         
         public static int GetRandomPrice()

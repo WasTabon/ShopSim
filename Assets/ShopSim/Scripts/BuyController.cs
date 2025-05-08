@@ -8,6 +8,7 @@ namespace ShopSim.Scripts
 {
     public class BuyController : MonoBehaviour
     {
+        [SerializeField] private int _moneyCount;
         [SerializeField] private float _uiPanelFadeTime;
         [SerializeField] private float _uiButtonScaleTimeIn;
         [SerializeField] private float _uiButtonScaleTimeOut;
@@ -56,11 +57,37 @@ namespace ShopSim.Scripts
         {
             if (_currentSeller != null)
             {
-                _currentSeller.ItemProccesed();
-                _currentSeller = null;
                 SetPanelFade(_checkPanel, 0);
                 SetButtonScale(_uiButtonCheck, Vector3.zero, _uiButtonScaleTimeOut, Ease.Flash);
                 _checkPanel.gameObject.SetActive(false);
+                _currentSeller.ItemProccesed(true);
+                _currentSeller = null;
+            }
+        }
+
+        public void Verify()
+        {
+            if (_moneyCount - 50 >= 0)
+            {
+                if (_currentSeller != null)
+                {
+                    if (_currentSeller.GetItem().GetFake())
+                    {
+                        _moneyCount -= 50;
+                    }
+                }   
+            }
+        }
+
+        public void Deny()
+        {
+            if (_currentSeller != null)
+            {
+                SetPanelFade(_checkPanel, 0);
+                SetButtonScale(_uiButtonCheck, Vector3.zero, _uiButtonScaleTimeOut, Ease.Flash);
+                _checkPanel.gameObject.SetActive(false);
+                _currentSeller.ItemProccesed(false);
+                _currentSeller = null;
             }
         }
 

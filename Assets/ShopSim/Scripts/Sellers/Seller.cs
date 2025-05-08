@@ -16,6 +16,8 @@ namespace ShopSim.Scripts.Sellers
         [SerializeField] private float _uiDialogueScaleTimeOut;
         
         [SerializeField] private AudioClip _greetingSound;
+        [SerializeField] private AudioClip _soldSound;
+        [SerializeField] private AudioClip _denySound;
         [SerializeField] private AudioClip[] _insideWalkSounds;
         [SerializeField] private AudioClip[] _outsideWalkSounds;
 
@@ -29,6 +31,7 @@ namespace ShopSim.Scripts.Sellers
         private Animator _animator;
 
         private Transform[] _positions;
+        private Transform[] _wayBack;
         private Transform _queueFirst;
         private int _currentTargetIndex;
         private bool _initialized;
@@ -40,8 +43,9 @@ namespace ShopSim.Scripts.Sellers
         private bool _isWalking;
         private float _walkSoundTimer;
         private float _walkSoundInterval = 0.6f;
-        private bool _cameToQueuePosition; 
-            
+        private bool _cameToQueuePosition;
+        private bool _itemProceseed;    
+        
         public bool isInsideShop;
 
         private void Awake()
@@ -59,9 +63,10 @@ namespace ShopSim.Scripts.Sellers
             _buyController = FindObjectOfType<BuyController>();
         }
 
-        public void Initialize(Transform movePosition1, Transform movePosition2, Transform movePosition3, Transform movePosition4, Transform queuePosition, Item item)
+        public void Initialize(Transform movePosition1, Transform movePosition2, Transform movePosition3, Transform movePosition4, Transform queuePosition, Item item, Transform[] wayBack)
         {
             _positions = new Transform[] { movePosition1, movePosition2, movePosition3, movePosition4, queuePosition };
+            _wayBack = wayBack;
             _currentTargetIndex = 0;
             _item = item;
 
@@ -83,34 +88,67 @@ namespace ShopSim.Scripts.Sellers
             if (!_initialized)
                 return;
 
-            if (_currentTargetIndex < _positions.Length)
+            if (!_itemProceseed)
             {
-                HandleMove(_positions[_currentTargetIndex]);
-            }
+                if (_currentTargetIndex < _positions.Length)
+                {
+                    HandleMove(_positions[_currentTargetIndex]);
+                }
 
-            if (_currentTargetIndex >= _positions.Length && _cameToQueuePosition == false)
-            {
-                _cameToQueuePosition = true;
-                Debug.Log("Came to position", this);
-            }
-            else if (_needMoveQueue && _cameToQueuePosition)
-            {
-                HandleMove(_currentTarget);
-            }
+                if (_currentTargetIndex >= _positions.Length && _cameToQueuePosition == false)
+                {
+                    _cameToQueuePosition = true;
+                    Debug.Log("Came to position", this);
+                }
+                else if (_needMoveQueue && _cameToQueuePosition)
+                {
+                    HandleMove(_currentTarget);
+                }
 
-            if (_currentTarget == null && _currentTargetIndex >= _positions.Length)
+                if (_currentTarget == null && _currentTargetIndex >= _positions.Length)
+                {
+                    HandleIdle();
+                }
+            }
+            else
             {
-                HandleIdle();
+                if (_currentTargetIndex < _positions.Length)
+                {
+                    HandleMove(_positions[_currentTargetIndex]);
+                }
             }
             
             HandleWalkSound();
         }
 
-        public void ItemProccesed()
+        public void ItemProccesed(bool isSold)
         {
-            OnItemComplete?.Invoke();
+            if (isSold)
+            {
+                PlaySound(_soldSound);
+                _animator.SetTrigger("OnWin");
+                _dialogue.DOScale(Vector3.zero, _uiDialogueScaleTimeIn)
+                    .SetEase(Ease.OutBack);
+                Invoke("SetItemProcecesed", 2.22f);
+            }
+            else
+            {
+                PlaySound(_denySound);
+                _animator.SetTrigger("OnSad");
+                _dialogue.DOScale(Vector3.zero, _uiDialogueScaleTimeIn)
+                    .SetEase(Ease.OutBack);
+                Invoke("SetItemProcecesed", 5.15f);
+            }
         }
 
+        private void SetItemProcecesed()
+        {
+            _currentTargetIndex = 0;
+            _positions = _wayBack;
+            _itemProceseed = true;
+            OnItemComplete?.Invoke();
+        }
+        
         public void HandleOnSeller()
         {
             _dialogue.DOScale(_originalScale, _uiDialogueScaleTimeIn)
@@ -132,15 +170,22 @@ namespace ShopSim.Scripts.Sellers
 
             Vector3 direction = Vector3.one;
 
-            if (!_cameToQueuePosition)
+            if (!_itemProceseed)
             {
-                Debug.Log($"Walk to shop", this);
-                direction = (target.position - transform.position).normalized;
+                if (!_cameToQueuePosition)
+                {
+                    Debug.Log($"Walk to shop", this);
+                    direction = (target.position - transform.position).normalized;
+                }
+                else if (_needMoveQueue && _cameToQueuePosition)
+                {
+                    Debug.Log($"Start new moving to {_currentTarget.gameObject.name}", this);
+                    direction = (_currentTarget.position - transform.position).normalized;
+                }
             }
-            else if (_needMoveQueue && _cameToQueuePosition)
+            else
             {
-                Debug.Log($"Start new moving to {_currentTarget.gameObject.name}", this);
-                direction = (_currentTarget.position - transform.position).normalized;   
+                direction = (target.position - transform.position).normalized;
             }
 
             transform.position += direction * _speed * Time.deltaTime;
@@ -155,14 +200,21 @@ namespace ShopSim.Scripts.Sellers
 
             if (Vector3.Distance(transform.position, target.position) < _stopDistance)
             {
-                if (!_cameToQueuePosition)
+                if (!_itemProceseed)
+                {
+                    if (!_cameToQueuePosition)
+                    {
+                        _currentTargetIndex++;
+                    }
+                    else if (_needMoveQueue || _cameToQueuePosition)
+                    {
+                        _needMoveQueue = false;
+                        _currentTarget = null;
+                    }
+                }
+                else
                 {
                     _currentTargetIndex++;
-                }
-                else if (_needMoveQueue || _cameToQueuePosition)
-                {
-                    _needMoveQueue = false;
-                    _currentTarget = null;
                 }
             }
         }
@@ -198,7 +250,7 @@ namespace ShopSim.Scripts.Sellers
             }
         }
 
-        private void PlaySound(AudioClip audioClip, float volume = 0.5f)
+        private void PlaySound(AudioClip audioClip, float volume = 0.7f)
         {
             _audioSource.PlayOneShot(audioClip, volume);
         }
