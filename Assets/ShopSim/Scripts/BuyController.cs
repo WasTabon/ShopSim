@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using ShopSim.Scripts.Sellers;
 using TMPro;
@@ -13,6 +14,8 @@ namespace ShopSim.Scripts
         [SerializeField] private float _uiButtonScaleTimeIn;
         [SerializeField] private float _uiButtonScaleTimeOut;
 
+        [SerializeField] private SellersManager _sellersManager;
+        
         [SerializeField] private Image _checkPanel;
         [SerializeField] private RectTransform _uiButtonCheck;
 
@@ -29,6 +32,8 @@ namespace ShopSim.Scripts
         private Vector3 _buyScale;
         private Vector3 _checkScale;
         private Vector3 _denyScale;
+
+        private bool _isNightPanelOpened;
         
         private Seller _currentSeller;
 
@@ -46,6 +51,14 @@ namespace ShopSim.Scripts
             _uiPanelFadeTime = tempFadeTime;
         }
 
+        private void Update()
+        {
+            if (DayTimeController.Instance.IsNight && _sellersManager.sellersQueue.Count <= 0 && !_isNightPanelOpened)
+            {
+                OpenNightPanel();
+            }
+        }
+
         public void SetCurrentSeller(Seller seller)
         {
             _currentSeller = seller;
@@ -55,13 +68,17 @@ namespace ShopSim.Scripts
         
         public void Buy()
         {
-            if (_currentSeller != null)
+            if (_moneyCount - _currentSeller.GetItem().GetPrice() >= 0)
             {
-                SetPanelFade(_checkPanel, 0);
-                SetButtonScale(_uiButtonCheck, Vector3.zero, _uiButtonScaleTimeOut, Ease.Flash);
-                _checkPanel.gameObject.SetActive(false);
-                _currentSeller.ItemProccesed(true);
-                _currentSeller = null;
+                if (_currentSeller != null)
+                {
+                    _moneyCount -= _currentSeller.GetItem().GetPrice();
+                    SetPanelFade(_checkPanel, 0);
+                    SetButtonScale(_uiButtonCheck, Vector3.zero, _uiButtonScaleTimeOut, Ease.Flash);
+                    _checkPanel.gameObject.SetActive(false);
+                    _currentSeller.ItemProccesed(true);
+                    _currentSeller = null;
+                }
             }
         }
 
@@ -89,6 +106,11 @@ namespace ShopSim.Scripts
                 _currentSeller.ItemProccesed(false);
                 _currentSeller = null;
             }
+        }
+
+        private void OpenNightPanel()
+        {
+            _isNightPanelOpened = true;
         }
 
         public void OpenCheckPanel()

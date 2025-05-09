@@ -6,17 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="e05062a5-b817-49c3-80cf-1c1d3cd5bb59" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ShopSim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShopSim/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HyperCasual Voice and SFX pack/SFX/Footsteps/Footsteps09.wav.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HyperCasual Voice and SFX pack/SFX/Footsteps/Footsteps09.wav.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Prefabs/Seller.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Prefabs/Seller.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scenes/Main.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/BuyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/BuyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/Item.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/DayTimeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/DayTimeController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/Seller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/Seller.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/SellersManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/SellersManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Gem Blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Gem Blue.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/equip_icon_axe_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/equip_icon_axe_1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +107,7 @@
       <workItem from="1746569026729" duration="9349000" />
       <workItem from="1746653692525" duration="10150000" />
       <workItem from="1746739578351" duration="1025000" />
-      <workItem from="1746742252871" duration="3023000" />
+      <workItem from="1746742252871" duration="5853000" />
     </task>
     <servers />
   </component>

@@ -21,21 +21,20 @@ namespace ShopSim.Scripts.Sellers
         
         [FormerlySerializedAs("_seller")] [SerializeField] private GameObject _sellerPrefab;
 
-        private Queue<Seller> _sellersQueue;
+        public Queue<Seller> sellersQueue;
 
         private void Start()
         {
-            _sellersQueue = new Queue<Seller>();
+            sellersQueue = new Queue<Seller>();
             
             InvokeRepeating("SpawnSeller", 0f, 15f);
         }
         
         private void MoveSellerQueue()
         {
-            Seller seller = _sellersQueue.Dequeue();
-            //seller.gameObject.SetActive(false);
+            sellersQueue.Dequeue();
             
-            Seller[] array = _sellersQueue.ToArray();
+            Seller[] array = sellersQueue.ToArray();
             
             for (int i = 0; i < array.Length; i++)
             {
@@ -45,10 +44,13 @@ namespace ShopSim.Scripts.Sellers
 
         private void SpawnSeller()
         {
-            if (_sellersQueue.Count < 5)
+            if (DayTimeController.Instance.IsDay)
             {
-                Item item = CreateItem();
-                GameObject seller = CreateSeller(item);
+                if (sellersQueue.Count < 5)
+                {
+                    Item item = CreateItem();
+                    GameObject seller = CreateSeller(item);
+                }
             }
         }
 
@@ -57,9 +59,9 @@ namespace ShopSim.Scripts.Sellers
             GameObject spawned = Instantiate(_sellerPrefab, _spawnPoint.position, Quaternion.identity);
             Seller spawnedSeller = spawned.GetComponent<Seller>();
             
-            spawnedSeller.Initialize(_movePoint1, _movePoint2,_movePoint3, _movePoint4, queuePoints[_sellersQueue.Count], item, wayBack);
+            spawnedSeller.Initialize(_movePoint1, _movePoint2,_movePoint3, _movePoint4, queuePoints[sellersQueue.Count], item, wayBack);
             
-            _sellersQueue.Enqueue(spawnedSeller);
+            sellersQueue.Enqueue(spawnedSeller);
             spawnedSeller.OnItemComplete += MoveSellerQueue;
             return spawned;
         }
