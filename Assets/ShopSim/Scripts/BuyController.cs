@@ -18,6 +18,7 @@ namespace ShopSim.Scripts
         [SerializeField] private SellersManager _sellersManager;
         
         [SerializeField] private Image _checkPanel;
+        [SerializeField] private RectTransform _dontHaveMoneyPanel;
         [SerializeField] private Image _itemsListPanel;
         [SerializeField] private RectTransform _uiButtonCheck;
 
@@ -41,6 +42,7 @@ namespace ShopSim.Scripts
         
         private Vector3 _buyScale;
         private Vector3 _checkScale;
+        private Vector3 _dontHaveMoneyScale;
         private Vector3 _denyScale;
 
         private bool _isNightPanelOpened;
@@ -53,6 +55,10 @@ namespace ShopSim.Scripts
             _checkScale = _uiButtonCheck.localScale;
             
             _uiButtonCheck.localScale = Vector3.zero;
+
+            _dontHaveMoneyScale = _dontHaveMoneyPanel.localScale;
+            _dontHaveMoneyPanel.DOScale(Vector3.zero, 0f);
+            _dontHaveMoneyPanel.gameObject.SetActive(false);
 
             float tempFadeTime = _uiPanelFadeTime;
             _uiPanelFadeTime = 0;
@@ -99,6 +105,10 @@ namespace ShopSim.Scripts
                     _currentSeller = null;
                 }
             }
+            else
+            {
+                OpenPanelMessage(_dontHaveMoneyPanel, _dontHaveMoneyScale);
+            }
         }
 
         public void Verify()
@@ -134,7 +144,7 @@ namespace ShopSim.Scripts
             _itemsSoldCount = 0;
             foreach (Image itemSlot in _itemSlots)
             {
-                Destroy(itemSlot);
+                Destroy(itemSlot.gameObject);
             }
             _itemSlots.Clear();
             
@@ -182,6 +192,26 @@ namespace ShopSim.Scripts
                 });
 
             FadeChildren(panel.transform, fade);
+        }
+
+        public void OpenPanelMessage(RectTransform _panel, Vector3 size)
+        {
+            _panel.DOKill();
+            _panel.gameObject.SetActive(true);
+            _panel.DOScale(size, 0.2f)
+                .SetEase(Ease.OutElastic);
+
+        }
+
+        public void CloseDontHaveMoneyPanel()
+        {
+            _dontHaveMoneyPanel.DOKill();
+            _dontHaveMoneyPanel.DOScale(Vector3.zero, 0.1f)
+                .SetEase(Ease.Flash)
+                .OnComplete((() =>
+                {
+                    _dontHaveMoneyPanel.gameObject.SetActive(false);
+                }));
         }
 
         private void FadeChildren(Transform parent, float fade)

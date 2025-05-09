@@ -19,7 +19,7 @@ namespace ShopSim.Scripts.Sellers
         
         private Transform _currentQueuePoint;
         
-        [FormerlySerializedAs("_seller")] [SerializeField] private GameObject _sellerPrefab;
+        [FormerlySerializedAs("_seller")] [SerializeField] private GameObject[] _sellerPrefabs;
 
         public Queue<Seller> sellersQueue;
 
@@ -56,7 +56,8 @@ namespace ShopSim.Scripts.Sellers
 
         private GameObject CreateSeller(Item item)
         {
-            GameObject spawned = Instantiate(_sellerPrefab, _spawnPoint.position, Quaternion.identity);
+            int randomSeller = Random.Range(0, _sellerPrefabs.Length);
+            GameObject spawned = Instantiate(_sellerPrefabs[randomSeller], _spawnPoint.position, Quaternion.identity);
             Seller spawnedSeller = spawned.GetComponent<Seller>();
             
             spawnedSeller.Initialize(_movePoint1, _movePoint2,_movePoint3, _movePoint4, queuePoints[sellersQueue.Count], item, wayBack);
