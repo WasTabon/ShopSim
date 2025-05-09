@@ -8,6 +8,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private float musicVolume;
     [SerializeField] private float fadeDuration = 1f;
 
+    
     private bool isFading;
 
     private void Start()

@@ -16,6 +16,7 @@ namespace ShopSim.Scripts
         [SerializeField] private float _uiButtonScaleTimeOut;
 
         [SerializeField] private SellersManager _sellersManager;
+        [SerializeField] private TextMeshProUGUI _moneyText;
         
         [SerializeField] private Image _checkPanel;
         [SerializeField] private RectTransform _sellFakeItemPanel;
@@ -89,6 +90,7 @@ namespace ShopSim.Scripts
 
         private void Update()
         {
+            _moneyText.text = _moneyCount.ToString();
             if (DayTimeController.Instance.IsNight && _sellersManager.sellersQueue.Count <= 0 && !_isNightPanelOpened)
             {
                 OpenNightPanel();
@@ -131,6 +133,11 @@ namespace ShopSim.Scripts
             {
                 OpenPanelMessage(_dontHaveMoneyPanel, _dontHaveMoneyScale);
             }
+        }
+
+        public void ShowPanelDontHaveMoney()
+        {
+            OpenPanelMessage(_dontHaveMoneyPanel, _dontHaveMoneyScale);
         }
 
         public void Verify()
@@ -195,7 +202,17 @@ namespace ShopSim.Scripts
             }
             _itemSlots.Clear();
         }
+        
+        public int GetMoneyCount()
+        {
+            return _moneyCount;
+        }
 
+        public void RemoveMoney(int count)
+        {
+            _moneyCount -= count;
+        }
+        
         public void CloseSellFakePanel()
         {
             _sellFakeItemPanel.DOKill();
