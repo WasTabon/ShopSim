@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ShopSim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShopSim/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scenes/Main.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/BuyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/BuyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/SellersManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/SellersManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +101,7 @@
       <workItem from="1746653692525" duration="10150000" />
       <workItem from="1746739578351" duration="1025000" />
       <workItem from="1746742252871" duration="8934000" />
-      <workItem from="1746792752620" duration="1957000" />
+      <workItem from="1746792752620" duration="4133000" />
     </task>
     <servers />
   </component>

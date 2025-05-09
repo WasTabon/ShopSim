@@ -19,6 +19,8 @@ namespace ShopSim.Scripts
         
         [SerializeField] private Image _checkPanel;
         [SerializeField] private RectTransform _dontHaveMoneyPanel;
+        [SerializeField] private RectTransform _fakePanel;
+        [SerializeField] private RectTransform _notFakePanel;
         [SerializeField] private Image _itemsListPanel;
         [SerializeField] private RectTransform _uiButtonCheck;
 
@@ -46,6 +48,7 @@ namespace ShopSim.Scripts
         private Vector3 _denyScale;
 
         private bool _isNightPanelOpened;
+        private bool _buyFake;
         
         private Seller _currentSeller;
 
@@ -97,6 +100,9 @@ namespace ShopSim.Scripts
                     _earnedMoneyCount += _currentSeller.GetItem().GetPrice();
                     _earnedMoneyText.text = _earnedMoneyCount.ToString();
                     _itemsSoldCount++;
+
+                    if (_currentSeller.GetItem().GetFake() && _buyFake == false)
+                        _buyFake = true;
                     
                     SetPanelFade(_checkPanel, 0);
                     SetButtonScale(_uiButtonCheck, Vector3.zero, _uiButtonScaleTimeOut, Ease.Flash);
@@ -117,11 +123,16 @@ namespace ShopSim.Scripts
             {
                 if (_currentSeller != null)
                 {
+                    _moneyCount -= 50;
                     if (_currentSeller.GetItem().GetFake())
                     {
-                        _moneyCount -= 50;
+                        
                     }
                 }   
+            }
+            else
+            {
+                OpenPanelMessage(_dontHaveMoneyPanel, _dontHaveMoneyScale);
             }
         }
 
@@ -139,9 +150,21 @@ namespace ShopSim.Scripts
 
         public void Sell()
         {
-            _moneyCount += _earnedMoneyCount;
-            _earnedMoneyCount = 0;
-            _itemsSoldCount = 0;
+            if (_buyFake == false)
+            {
+                _moneyCount += _earnedMoneyCount;
+                _earnedMoneyCount = 0;
+                _itemsSoldCount = 0;
+                _buyFake = false;
+            }
+            else
+            {
+                _earnedMoneyCount = 50;
+                _moneyCount += _earnedMoneyCount;
+                _earnedMoneyCount = 0;
+                _itemsSoldCount = 0;
+                _buyFake = false;
+            }
             foreach (Image itemSlot in _itemSlots)
             {
                 Destroy(itemSlot.gameObject);
