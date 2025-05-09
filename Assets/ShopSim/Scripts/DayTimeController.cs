@@ -29,6 +29,7 @@ public class DayTimeController : MonoBehaviour
     private Color _baseColor;
 
     private Quaternion _nightRotation = Quaternion.Euler(318.345337f, 41.8368301f, 163.594666f);
+    private Quaternion _dayRotation = Quaternion.Euler(50f, 330f, 0f);
     private float _timer;
 
     private void Awake()
@@ -98,10 +99,15 @@ public class DayTimeController : MonoBehaviour
         _dayTimeTransitionImage.DOFade(1, _transitionTime)
             .OnComplete(() =>
             {
+                _directionalLight.transform.localRotation = _dayRotation;
+                _directionalLight.color = _dayColor;
+                StartCoroutine(SwitchToNightAfterDelay());
                 SetSkyboxDay();
                 _dayTimeTransitionImage.DOFade(0, _transitionTime)
                     .OnComplete(() =>
                     {
+                        _directionalLight.transform.localRotation = _dayRotation;
+                        _directionalLight.color = _dayColor;
                         IsDay = true;
                         IsNight = false;
                         _isNight = false;
@@ -129,7 +135,6 @@ public class DayTimeController : MonoBehaviour
         if (_isNight)
         {
             SetDay();
-            StartCoroutine(SwitchToNightAfterDelay());
         }
     }
 }

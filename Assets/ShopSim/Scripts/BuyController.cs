@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using ShopSim.Scripts.Sellers;
 using TMPro;
@@ -17,6 +18,7 @@ namespace ShopSim.Scripts
         [SerializeField] private SellersManager _sellersManager;
         
         [SerializeField] private Image _checkPanel;
+        [SerializeField] private Image _itemsListPanel;
         [SerializeField] private RectTransform _uiButtonCheck;
 
         [SerializeField] private Sprite _common;
@@ -29,6 +31,14 @@ namespace ShopSim.Scripts
         [SerializeField] private TextMeshProUGUI _itemName;
         [SerializeField] private TextMeshProUGUI _itemPrice;
 
+        private List<Image> _itemSlots;
+        [SerializeField] private Image _itemSlot;
+        [SerializeField] private RectTransform _itemSlotsContent;
+        [SerializeField] private TextMeshProUGUI _earnedMoneyText;
+        
+        private int _itemsSoldCount;
+        private int _earnedMoneyCount;
+        
         private Vector3 _buyScale;
         private Vector3 _checkScale;
         private Vector3 _denyScale;
@@ -39,6 +49,7 @@ namespace ShopSim.Scripts
 
         private void Start()
         {
+            _itemSlots = new List<Image>();
             _checkScale = _uiButtonCheck.localScale;
             
             _uiButtonCheck.localScale = Vector3.zero;
@@ -73,6 +84,14 @@ namespace ShopSim.Scripts
                 if (_currentSeller != null)
                 {
                     _moneyCount -= _currentSeller.GetItem().GetPrice();
+                    
+                    Image slot = Instantiate(_itemSlot, _itemSlotsContent);
+                    slot.sprite = _currentSeller.GetItem().GetIcon();
+                    _itemSlots.Add(slot);
+                    _earnedMoneyCount += _currentSeller.GetItem().GetPrice();
+                    _earnedMoneyText.text = _earnedMoneyCount.ToString();
+                    _itemsSoldCount++;
+                    
                     SetPanelFade(_checkPanel, 0);
                     SetButtonScale(_uiButtonCheck, Vector3.zero, _uiButtonScaleTimeOut, Ease.Flash);
                     _checkPanel.gameObject.SetActive(false);
@@ -108,9 +127,37 @@ namespace ShopSim.Scripts
             }
         }
 
+        public void Sell()
+        {
+            _moneyCount += _earnedMoneyCount;
+            _earnedMoneyCount = 0;
+            _itemsSoldCount = 0;
+            foreach (Image itemSlot in _itemSlots)
+            {
+                Destroy(itemSlot);
+            }
+            _itemSlots.Clear();
+            
+            SetPanelFade(_itemsListPanel, 0, SetDayAferSold);
+        }
+
+        private void SetDayAferSold()
+        {
+            DayTimeController.Instance.SwitchToDay();
+            _itemsListPanel.gameObject.SetActive(false);
+            Invoke("SetNightPanelOpenedFalse", 7f);
+        }
+
+        private void SetNightPanelOpenedFalse()
+        {
+            _isNightPanelOpened = false;
+        }
+
         private void OpenNightPanel()
         {
             _isNightPanelOpened = true;
+            _itemsListPanel.gameObject.SetActive(true);
+            SetPanelFade(_itemsListPanel, 1);
         }
 
         public void OpenCheckPanel()
@@ -119,7 +166,7 @@ namespace ShopSim.Scripts
             SetPanelFade(_checkPanel, 1);
         }
 
-        public void SetPanelFade(Image panel, float fade)
+        public void SetPanelFade(Image panel, float fade, Action onComplete = null)
         {
             float tempPanelFade = 0;
             panel.DOKill();
@@ -128,7 +175,11 @@ namespace ShopSim.Scripts
             else if (fade == 0)
                 tempPanelFade = 0;
             
-            panel.DOFade(tempPanelFade, _uiPanelFadeTime);
+            panel.DOFade(tempPanelFade, _uiPanelFadeTime)
+                .OnComplete(() =>
+                {
+                    onComplete?.Invoke();
+                });
 
             FadeChildren(panel.transform, fade);
         }
