@@ -74,7 +74,7 @@ namespace ShopSim.Scripts.Sellers
             ItemRarity randomRarity = GetRandomRarity();
             int randomPrice = GetRandomPrice();
             int randomFake = Random.Range(1, 100);
-            bool isFake = randomFake <= 25;
+            bool isFake = randomFake <= 75;
             int randomDirty = Random.Range(1, 100);
             bool isDirty = randomDirty <= 25;
             

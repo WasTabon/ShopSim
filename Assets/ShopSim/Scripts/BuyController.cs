@@ -18,6 +18,7 @@ namespace ShopSim.Scripts
         [SerializeField] private SellersManager _sellersManager;
         
         [SerializeField] private Image _checkPanel;
+        [SerializeField] private RectTransform _sellFakeItemPanel;
         [SerializeField] private RectTransform _dontHaveMoneyPanel;
         [SerializeField] private RectTransform _fakePanel;
         [SerializeField] private RectTransform _notFakePanel;
@@ -44,7 +45,10 @@ namespace ShopSim.Scripts
         
         private Vector3 _buyScale;
         private Vector3 _checkScale;
+        private Vector3 _sellFakeItemScale;
         private Vector3 _dontHaveMoneyScale;
+        private Vector3 _fakeScale;
+        private Vector3 _notFakeScale;
         private Vector3 _denyScale;
 
         private bool _isNightPanelOpened;
@@ -62,7 +66,19 @@ namespace ShopSim.Scripts
             _dontHaveMoneyScale = _dontHaveMoneyPanel.localScale;
             _dontHaveMoneyPanel.DOScale(Vector3.zero, 0f);
             _dontHaveMoneyPanel.gameObject.SetActive(false);
+            
+            _fakeScale = _fakePanel.localScale;
+            _fakePanel.DOScale(Vector3.zero, 0f);
+            _fakePanel.gameObject.SetActive(false);
+            
+            _notFakeScale = _notFakePanel.localScale;
+            _notFakePanel.DOScale(Vector3.zero, 0f);
+            _notFakePanel.gameObject.SetActive(false);
 
+            _sellFakeItemScale = _sellFakeItemPanel.localScale;
+            _sellFakeItemPanel.localScale = Vector3.zero;
+            _sellFakeItemPanel.gameObject.SetActive(false);
+            
             float tempFadeTime = _uiPanelFadeTime;
             _uiPanelFadeTime = 0;
             
@@ -126,7 +142,11 @@ namespace ShopSim.Scripts
                     _moneyCount -= 50;
                     if (_currentSeller.GetItem().GetFake())
                     {
-                        
+                        OpenPanelMessage(_fakePanel, _fakeScale);
+                    }
+                    else
+                    {
+                        OpenPanelMessage(_notFakePanel, _notFakeScale);
                     }
                 }   
             }
@@ -152,10 +172,11 @@ namespace ShopSim.Scripts
         {
             if (_buyFake == false)
             {
-                _moneyCount += _earnedMoneyCount;
+                _moneyCount += (int)(_earnedMoneyCount * 1.3f);
                 _earnedMoneyCount = 0;
                 _itemsSoldCount = 0;
                 _buyFake = false;
+                CloseSellFakePanel();
             }
             else
             {
@@ -164,14 +185,27 @@ namespace ShopSim.Scripts
                 _earnedMoneyCount = 0;
                 _itemsSoldCount = 0;
                 _buyFake = false;
+                _sellFakeItemPanel.gameObject.SetActive(true);
+                OpenPanelMessage(_sellFakeItemPanel, _sellFakeItemScale);
+                
             }
             foreach (Image itemSlot in _itemSlots)
             {
                 Destroy(itemSlot.gameObject);
             }
             _itemSlots.Clear();
-            
-            SetPanelFade(_itemsListPanel, 0, SetDayAferSold);
+        }
+
+        public void CloseSellFakePanel()
+        {
+            _sellFakeItemPanel.DOKill();
+            _sellFakeItemPanel.DOScale(Vector3.zero, 0.1f)
+                .SetEase(Ease.Flash)
+                .OnComplete((() =>
+                {
+                    _sellFakeItemPanel.gameObject.SetActive(false);
+                    SetPanelFade(_itemsListPanel, 0, SetDayAferSold);
+                }));
         }
 
         private void SetDayAferSold()
@@ -223,7 +257,6 @@ namespace ShopSim.Scripts
             _panel.gameObject.SetActive(true);
             _panel.DOScale(size, 0.2f)
                 .SetEase(Ease.OutElastic);
-
         }
 
         public void CloseDontHaveMoneyPanel()
@@ -234,6 +267,28 @@ namespace ShopSim.Scripts
                 .OnComplete((() =>
                 {
                     _dontHaveMoneyPanel.gameObject.SetActive(false);
+                }));
+        }
+        
+        public void CloseFakePanel()
+        {
+            _fakePanel.DOKill();
+            _fakePanel.DOScale(Vector3.zero, 0.1f)
+                .SetEase(Ease.Flash)
+                .OnComplete((() =>
+                {
+                    _fakePanel.gameObject.SetActive(false);
+                }));
+        }
+        
+        public void CloseNotFakePanel()
+        {
+            _notFakePanel.DOKill();
+            _notFakePanel.DOScale(Vector3.zero, 0.1f)
+                .SetEase(Ease.Flash)
+                .OnComplete((() =>
+                {
+                    _notFakePanel.gameObject.SetActive(false);
                 }));
         }
 
