@@ -1,7 +1,6 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 using System.Linq;
 
 public class LootboxSpinner : MonoBehaviour
@@ -9,24 +8,58 @@ public class LootboxSpinner : MonoBehaviour
     [System.Serializable]
     public class CaseItem
     {
-        public RectTransform rect;
-        public string itemName; // Название предмета, можно расширить
+        public string itemName;
+        public RectTransform prefab;
     }
 
-    public List<CaseItem> caseItems; // 5 предметов
-    public float spinSpeed = 300f; // Пикселей в секунду
+    private class SpawnedItem
+    {
+        public RectTransform rect;
+        public string itemName;
+    }
+
+    public List<CaseItem> caseItems; // шаблоны предметов (prefab + name)
+    public RectTransform content; // Родитель для предметов
+    public float spacing = 200f;
+    public float spinSpeed = 300f;
     public float minSpinDistance = 2000f;
     public float maxSpinDistance = 4000f;
+    public RectTransform panelCenter;
+    public float wrapOffset = 600f;
 
-    public RectTransform panelCenter; // Центральная точка панели
-    public float spacing = 200f; // Расстояние между предметами
-    public float wrapOffset = 600f; // Граница, за которую "телепортируем"
-
+    private List<SpawnedItem> spawnedItems = new List<SpawnedItem>();
     private float totalDistanceToSpin;
     private float distanceSpun;
     private bool isSpinning;
 
-    private CaseItem selectedItem;
+    private SpawnedItem selectedItem;
+
+    void Start()
+    {
+        GenerateItems();
+    }
+
+    void GenerateItems()
+    {
+        spawnedItems.Clear();
+
+        float startX = -content.rect.width / 2f + spacing / 2f;
+
+        for (int i = 0; i < caseItems.Count; i++)
+        {
+            var caseItem = caseItems[i];
+            RectTransform itemInstance = Instantiate(caseItem.prefab, content);
+            itemInstance.anchoredPosition = new Vector2(startX + i * spacing, 0);
+
+            var spawned = new SpawnedItem
+            {
+                rect = itemInstance,
+                itemName = caseItem.itemName
+            };
+
+            spawnedItems.Add(spawned);
+        }
+    }
 
     public void StartSpin()
     {
@@ -44,14 +77,14 @@ public class LootboxSpinner : MonoBehaviour
         float move = spinSpeed * Time.deltaTime;
         distanceSpun += move;
 
-        foreach (var item in caseItems)
+        foreach (var item in spawnedItems)
         {
             item.rect.anchoredPosition -= new Vector2(move, 0);
 
-            // Проверка границ и "перемотка"
-            if (item.rect.anchoredPosition.x < -wrapOffset)
+            float rightEdge = item.rect.anchoredPosition.x + (item.rect.rect.width / 2f);
+            if (rightEdge < -wrapOffset)
             {
-                float rightMostX = caseItems.Max(i => i.rect.anchoredPosition.x);
+                float rightMostX = spawnedItems.Max(i => i.rect.anchoredPosition.x);
                 item.rect.anchoredPosition = new Vector2(rightMostX + spacing, item.rect.anchoredPosition.y);
             }
         }
@@ -65,10 +98,10 @@ public class LootboxSpinner : MonoBehaviour
 
     private void SnapToNearestCenterItem()
     {
-        CaseItem closest = null;
+        SpawnedItem closest = null;
         float closestDist = float.MaxValue;
 
-        foreach (var item in caseItems)
+        foreach (var item in spawnedItems)
         {
             float dist = Mathf.Abs(item.rect.position.x - panelCenter.position.x);
             if (dist < closestDist)
@@ -80,6 +113,5 @@ public class LootboxSpinner : MonoBehaviour
 
         selectedItem = closest;
         Debug.Log("Выпал предмет: " + selectedItem.itemName);
-        // Можешь вызвать тут анимацию, эффекты и т.д.
     }
 }
