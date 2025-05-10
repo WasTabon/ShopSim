@@ -16,9 +16,11 @@ namespace ShopSim.Scripts
         [SerializeField] private float _uiButtonScaleTimeOut;
 
         [SerializeField] private SellersManager _sellersManager;
+        [SerializeField] private ShopLevelManager _shopLevelManager;
         [SerializeField] private TextMeshProUGUI _moneyText;
         
         [SerializeField] private Image _checkPanel;
+        [SerializeField] private RectTransform _settingsPanel;
         [SerializeField] private RectTransform _sellFakeItemPanel;
         [SerializeField] private RectTransform _dontHaveMoneyPanel;
         [SerializeField] private RectTransform _fakePanel;
@@ -43,6 +45,8 @@ namespace ShopSim.Scripts
         
         private int _itemsSoldCount;
         private int _earnedMoneyCount;
+
+        private float _sellItemModifier;
         
         private Vector3 _buyScale;
         private Vector3 _checkScale;
@@ -50,6 +54,7 @@ namespace ShopSim.Scripts
         private Vector3 _dontHaveMoneyScale;
         private Vector3 _fakeScale;
         private Vector3 _notFakeScale;
+        private Vector3 _settingsScale;
         private Vector3 _denyScale;
 
         private bool _isNightPanelOpened;
@@ -80,6 +85,10 @@ namespace ShopSim.Scripts
             _sellFakeItemPanel.localScale = Vector3.zero;
             _sellFakeItemPanel.gameObject.SetActive(false);
             
+            _settingsScale = _settingsPanel.localScale;
+            _settingsPanel.localScale = Vector3.zero;
+            _settingsPanel.gameObject.SetActive(false);
+            
             float tempFadeTime = _uiPanelFadeTime;
             _uiPanelFadeTime = 0;
             
@@ -95,6 +104,16 @@ namespace ShopSim.Scripts
             {
                 OpenNightPanel();
             }
+
+            if (_shopLevelManager.GetLevel() == 1) _sellItemModifier = 1f;
+            else if (_shopLevelManager.GetLevel() == 2) _sellItemModifier = 1.15f;
+            else if (_shopLevelManager.GetLevel() == 3) _sellItemModifier = 1.3f;
+            else if (_shopLevelManager.GetLevel() == 4) _sellItemModifier = 1.5f;
+            else if (_shopLevelManager.GetLevel() == 5) _sellItemModifier = 1.8f;
+            else if (_shopLevelManager.GetLevel() == 6) _sellItemModifier = 2f;
+            else if (_shopLevelManager.GetLevel() == 7) _sellItemModifier = 2.5f;
+            else if (_shopLevelManager.GetLevel() == 8) _sellItemModifier = 3f;
+            else if (_shopLevelManager.GetLevel() == 9) _sellItemModifier = 3.5f;
         }
 
         public void SetCurrentSeller(Seller seller)
@@ -115,7 +134,7 @@ namespace ShopSim.Scripts
                     Image slot = Instantiate(_itemSlot, _itemSlotsContent);
                     slot.sprite = _currentSeller.GetItem().GetIcon();
                     _itemSlots.Add(slot);
-                    _earnedMoneyCount += _currentSeller.GetItem().GetPrice();
+                    _earnedMoneyCount += (int)(_currentSeller.GetItem().GetPrice() * _sellItemModifier);
                     _earnedMoneyText.text = _earnedMoneyCount.ToString();
                     _itemsSoldCount++;
 
@@ -179,7 +198,7 @@ namespace ShopSim.Scripts
         {
             if (_buyFake == false)
             {
-                _moneyCount += (int)(_earnedMoneyCount * 1.3f);
+                _moneyCount += (int)(_earnedMoneyCount * _sellItemModifier);
                 _earnedMoneyCount = 0;
                 _itemsSoldCount = 0;
                 _buyFake = false;
@@ -306,6 +325,21 @@ namespace ShopSim.Scripts
                 .OnComplete((() =>
                 {
                     _notFakePanel.gameObject.SetActive(false);
+                }));
+        }
+
+        public void OpenSettingsPanel()
+        {
+            OpenPanelMessage(_settingsPanel, _settingsScale);
+        }
+        public void CloseSetingsPanel()
+        {
+            _settingsPanel.DOKill();
+            _settingsPanel.DOScale(Vector3.zero, 0.1f)
+                .SetEase(Ease.Flash)
+                .OnComplete((() =>
+                {
+                    _fakePanel.gameObject.SetActive(false);
                 }));
         }
 

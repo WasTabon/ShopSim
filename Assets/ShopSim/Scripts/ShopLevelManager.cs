@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShopLevelManager : MonoBehaviour
 {
     [SerializeField] private int _level;
+    [SerializeField] private GameObject _upgradeButton;
     [SerializeField] private int[] _levelUpgradePrices;
     [SerializeField] private Transform[] _levelUpgradePositions;
     [SerializeField] private TextMeshProUGUI _levelText;
@@ -19,6 +20,9 @@ public class ShopLevelManager : MonoBehaviour
     [SerializeField] private GameObject _level4;
     [SerializeField] private GameObject _level5;
     [SerializeField] private GameObject _level6;
+    [SerializeField] private GameObject _level7;
+    [SerializeField] private GameObject _level8;
+    [SerializeField] private GameObject _level9;
 
     private AudioSource _audioSource;
 
@@ -33,6 +37,11 @@ public class ShopLevelManager : MonoBehaviour
         _upgradeButonText.text = $"Upgrade ({_levelUpgradePrices[_level]})";
     }
 
+    public int GetLevel()
+    {
+        return _level;
+    }
+    
     public void UpgradeLevel()
     {
         if (_buyController.GetMoneyCount() - _levelUpgradePrices[_level] >= 0)
@@ -70,6 +79,20 @@ public class ShopLevelManager : MonoBehaviour
                 break;
             case 6: 
                 _level6.SetActive(true);
+                break;
+            case 7: 
+                _level7.SetActive(true);
+                break;
+            case 8: 
+                _level8.SetActive(true);
+                break;
+            case 9: 
+                _level9.SetActive(true);
+                _upgradeButton.SetActive(false);
+                break;
+            case 10:
+                break;
+            default:
                 break;
         }
     }

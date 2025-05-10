@@ -22,6 +22,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/RemoveSellers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/Item.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/Sellers/ItemRarity.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/SettingsManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/ShopLevelManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/ShopZone.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ShopSim/Scripts/UISoundsManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -113,7 +114,10 @@
       <workItem from="1746810352348" duration="202000" />
       <workItem from="1746810573079" duration="39000" />
       <workItem from="1746810625036" duration="25000" />
-      <workItem from="1746820918420" duration="8356000" />
+      <workItem from="1746820918420" duration="8630000" />
+      <workItem from="1746903856935" duration="3058000" />
+      <workItem from="1746909908761" duration="40000" />
+      <workItem from="1746909957231" duration="13000" />
     </task>
     <servers />
   </component>
