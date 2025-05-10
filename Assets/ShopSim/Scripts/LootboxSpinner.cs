@@ -16,6 +16,7 @@ public class LootboxSpinner : MonoBehaviour
     {
         public RectTransform rect;
         public string itemName;
+        public bool hasPlayedSound = false;
     }
 
     public List<CaseItem> caseItems; // шаблоны предметов (prefab + name)
@@ -26,6 +27,13 @@ public class LootboxSpinner : MonoBehaviour
     public float maxSpinDistance = 4000f;
     public RectTransform panelCenter;
     public float wrapOffset = 600f;
+
+    public GameObject _winParticles;
+    
+    public AudioClip[] tickSounds;
+    public AudioClip winSound;
+    public AudioSource audioSource;
+    public float soundTriggerThreshold = 10f;   
 
     private List<SpawnedItem> spawnedItems = new List<SpawnedItem>();
     private float totalDistanceToSpin;
@@ -87,6 +95,19 @@ public class LootboxSpinner : MonoBehaviour
                 float rightMostX = spawnedItems.Max(i => i.rect.anchoredPosition.x);
                 item.rect.anchoredPosition = new Vector2(rightMostX + spacing, item.rect.anchoredPosition.y);
             }
+
+            float centerDist = Mathf.Abs(item.rect.position.x - panelCenter.position.x);
+
+            if (centerDist < soundTriggerThreshold && !item.hasPlayedSound)
+            {
+                item.hasPlayedSound = true;
+                int randomSound = Random.Range(0, tickSounds.Length);
+                audioSource.PlayOneShot(tickSounds[randomSound]);
+            }
+            else if (centerDist >= soundTriggerThreshold)
+            {
+                item.hasPlayedSound = false;
+            }
         }
 
         if (distanceSpun >= totalDistanceToSpin)
@@ -112,6 +133,7 @@ public class LootboxSpinner : MonoBehaviour
         }
 
         selectedItem = closest;
+        audioSource.PlayOneShot(winSound);
         Debug.Log("Выпал предмет: " + selectedItem.itemName);
     }
 }
