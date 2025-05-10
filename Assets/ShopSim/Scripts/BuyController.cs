@@ -20,6 +20,7 @@ namespace ShopSim.Scripts
         [SerializeField] private TextMeshProUGUI _moneyText;
         
         [SerializeField] private Image _checkPanel;
+        [SerializeField] private RectTransform _lootBoxPanel;
         [SerializeField] private RectTransform _settingsPanel;
         [SerializeField] private RectTransform _sellFakeItemPanel;
         [SerializeField] private RectTransform _dontHaveMoneyPanel;
@@ -54,6 +55,7 @@ namespace ShopSim.Scripts
         private Vector3 _dontHaveMoneyScale;
         private Vector3 _fakeScale;
         private Vector3 _notFakeScale;
+        private Vector3 _lootBoxScale;
         private Vector3 _settingsScale;
         private Vector3 _denyScale;
 
@@ -88,6 +90,10 @@ namespace ShopSim.Scripts
             _settingsScale = _settingsPanel.localScale;
             _settingsPanel.localScale = Vector3.zero;
             _settingsPanel.gameObject.SetActive(false);
+            
+            _lootBoxScale = _lootBoxPanel.localScale;
+            _lootBoxPanel.localScale = Vector3.zero;
+            _lootBoxPanel.gameObject.SetActive(false);
             
             float tempFadeTime = _uiPanelFadeTime;
             _uiPanelFadeTime = 0;
@@ -339,7 +345,22 @@ namespace ShopSim.Scripts
                 .SetEase(Ease.Flash)
                 .OnComplete((() =>
                 {
-                    _fakePanel.gameObject.SetActive(false);
+                    _settingsPanel.gameObject.SetActive(false);
+                }));
+        }
+        
+        public void OpenLootBoxPanel()
+        {
+            OpenPanelMessage(_lootBoxPanel, _lootBoxScale);
+        }
+        public void CloseLootBoxPanel()
+        {
+            _lootBoxPanel.DOKill();
+            _lootBoxPanel.DOScale(Vector3.zero, 0.1f)
+                .SetEase(Ease.Flash)
+                .OnComplete((() =>
+                {
+                    _lootBoxPanel.gameObject.SetActive(false);
                 }));
         }
 

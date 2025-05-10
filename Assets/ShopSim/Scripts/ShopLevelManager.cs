@@ -23,7 +23,7 @@ public class ShopLevelManager : MonoBehaviour
     [SerializeField] private GameObject _level7;
     [SerializeField] private GameObject _level8;
     [SerializeField] private GameObject _level9;
-
+    
     private AudioSource _audioSource;
 
     private void Start()
