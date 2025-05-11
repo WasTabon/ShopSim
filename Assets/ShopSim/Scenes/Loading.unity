@@ -814,7 +814,7 @@ MonoBehaviour:
   popSound: {fileID: 8300000, guid: 287ef63a134c66b49ba664c9e396f1d6, type: 3}
   shineSound: {fileID: 8300000, guid: f804e812e47fd7b4fbff4b289cc82755, type: 3}
   nextSceneName: Main
-  _ease: 4
+  _ease: 30
 --- !u!82 &2058611596
 AudioSource:
   m_ObjectHideFlags: 0
