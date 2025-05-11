@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using ShopSim.Scripts;
 
 public class LootboxSpinner : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class LootboxSpinner : MonoBehaviour
         public bool hasPlayedSound = false;
     }
 
+    public BuyController buyController;
     public List<CaseItem> caseItems; // шаблоны предметов (prefab + name)
     public RectTransform content; // Родитель для предметов
     public float spacing = 200f;
@@ -71,11 +73,16 @@ public class LootboxSpinner : MonoBehaviour
 
     public void StartSpin()
     {
-        if (isSpinning) return;
+        if (buyController.GetMoneyCount() - 300 >= 0)
+        {
+            if (isSpinning) return;
 
-        totalDistanceToSpin = Random.Range(minSpinDistance, maxSpinDistance);
-        distanceSpun = 0f;
-        isSpinning = true;
+            buyController.RemoveMoney(300);
+            
+            totalDistanceToSpin = Random.Range(minSpinDistance, maxSpinDistance);
+            distanceSpun = 0f;
+            isSpinning = true;
+        }
     }
 
     void Update()
