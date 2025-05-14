@@ -116,11 +116,11 @@ namespace ShopSim.Scripts
                 OpenNightPanel();
             }
 
-            if (_shopLevelManager.GetLevel() == 1) _sellItemModifier = 1f;
-            else if (_shopLevelManager.GetLevel() == 2) _sellItemModifier = 1.15f;
-            else if (_shopLevelManager.GetLevel() == 3) _sellItemModifier = 1.3f;
-            else if (_shopLevelManager.GetLevel() == 4) _sellItemModifier = 1.5f;
-            else if (_shopLevelManager.GetLevel() == 5) _sellItemModifier = 1.8f;
+            if (_shopLevelManager.GetLevel() == 1) _sellItemModifier = 1.5f;
+            else if (_shopLevelManager.GetLevel() == 2) _sellItemModifier = 1.6f;
+            else if (_shopLevelManager.GetLevel() == 3) _sellItemModifier = 1.7f;
+            else if (_shopLevelManager.GetLevel() == 4) _sellItemModifier = 1.8f;
+            else if (_shopLevelManager.GetLevel() == 5) _sellItemModifier = 1.9f;
             else if (_shopLevelManager.GetLevel() == 6) _sellItemModifier = 2f;
             else if (_shopLevelManager.GetLevel() == 7) _sellItemModifier = 2.5f;
             else if (_shopLevelManager.GetLevel() == 8) _sellItemModifier = 3f;
@@ -173,7 +173,7 @@ namespace ShopSim.Scripts
             Image slot = Instantiate(_itemSlot, _itemSlotsContent);
             slot.sprite = sprite;
             _itemSlots.Add(slot);
-            _earnedMoneyCount += (int)(_currentSeller.GetItem().GetPrice() * _sellItemModifier);
+            _earnedMoneyCount += 1000;
             _earnedMoneyText.text = _earnedMoneyCount.ToString();
             _itemsSoldCount++;
         }

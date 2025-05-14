@@ -11,6 +11,7 @@ public class LootboxSpinner : MonoBehaviour
     {
         public string itemName;
         public RectTransform prefab;
+        public Sprite Sprite;
     }
 
     private class SpawnedItem
@@ -64,11 +65,18 @@ public class LootboxSpinner : MonoBehaviour
             RectTransform itemInstance = Instantiate(caseItem.prefab, content);
             itemInstance.anchoredPosition = new Vector2(startX + i * spacing, 0);
 
+            // Установка спрайта в Image, если такой компонент есть
+            Image img = itemInstance.GetComponent<Image>();
+            if (img != null && caseItem.Sprite != null)
+            {
+                img.sprite = caseItem.Sprite;
+            }
+
             var spawned = new SpawnedItem
             {
                 rect = itemInstance,
                 itemName = caseItem.itemName,
-                sprite = caseItem.prefab.gameObject.GetComponent<SpriteRenderer>().sprite
+                sprite = caseItem.Sprite
             };
 
             spawnedItems.Add(spawned);
@@ -77,18 +85,13 @@ public class LootboxSpinner : MonoBehaviour
 
     public void StartSpin()
     {
-        if (buyController.GetMoneyCount() - 300 >= 0)
-        {
-            if (isSpinning) return;
+        if (isSpinning) return;
             
-            button.SetActive(false);
-
-            buyController.RemoveMoney(300);
+        button.SetActive(false);
             
-            totalDistanceToSpin = Random.Range(minSpinDistance, maxSpinDistance);
-            distanceSpun = 0f;
-            isSpinning = true;
-        }
+        totalDistanceToSpin = Random.Range(minSpinDistance, maxSpinDistance);
+        distanceSpun = 0f;
+        isSpinning = true;
     }
 
     void Update()
@@ -148,7 +151,16 @@ public class LootboxSpinner : MonoBehaviour
         selectedItem = closest;
         audioSource.PlayOneShot(winSound);
         button.SetActive(true);
-        buyController.AddItemToInventory(selectedItem.sprite);
         Debug.Log("Выпал предмет: " + selectedItem.itemName);
+        if (selectedItem.sprite == null)
+        {
+            Debug.Log("Sprite is null");
+        }
+
+        if (buyController == null)
+        {
+            Debug.Log("buy controller is null");
+        }
+        buyController.AddItemToInventory(selectedItem.sprite);
     }
 }
