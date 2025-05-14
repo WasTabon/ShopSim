@@ -34,7 +34,7 @@ public class ShopLevelManager : MonoBehaviour
     private void Update()
     {
         _levelText.text = $"Level {_level}";
-        _upgradeButonText.text = $"Upgrade ({_levelUpgradePrices[_level]})";
+        _upgradeButonText.text = $"Upgrade - {_levelUpgradePrices[_level]}";
     }
 
     public int GetLevel()

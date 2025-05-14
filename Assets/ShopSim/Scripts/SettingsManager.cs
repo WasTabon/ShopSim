@@ -17,7 +17,7 @@ public class SettingsManager : MonoBehaviour
         }
         else 
         {
-            _graphicsQualityText.text = "Hgh";
+            _graphicsQualityText.text = "High";
             _postProccesing.SetActive(true);
             _isHighQuality = true;
         }
