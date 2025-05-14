@@ -5,9 +5,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e05062a5-b817-49c3-80cf-1c1d3cd5bb59" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ShopSim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ShopSim/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Prefabs/LootAxe.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Prefabs/LootAxe.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Prefabs/LootDiamond.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Prefabs/LootDiamond.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scenes/Loading.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scenes/Loading.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/SettingsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/SettingsManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Scripts/ShopLevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Scripts/ShopLevelManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 10.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 11.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 12.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 13.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 13.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 4.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 6.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 7.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 8.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/item 9.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/pannel.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Art/pannel.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Axe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Axe.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Chat (Square).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Chat (Square).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Diamond.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Diamond.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/HeptaSlab-VariableFont_wght SDF.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/HeptaSlab-VariableFont_wght SDF.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/HeptaSlab-VariableFont_wght.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/HeptaSlab-VariableFont_wght.ttf.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ShopSim/Sprites/Logo.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +172,7 @@
       <workItem from="1746910062343" duration="5503000" />
       <workItem from="1746985976446" duration="2877000" />
       <workItem from="1747081555840" duration="11000" />
-      <workItem from="1747247923895" duration="428000" />
+      <workItem from="1747247923895" duration="3806000" />
     </task>
     <servers />
   </component>

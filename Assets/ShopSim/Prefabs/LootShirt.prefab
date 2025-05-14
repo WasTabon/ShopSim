@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6291071436679013943
+--- !u!1 &2714332710800341058
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1016629433687652737}
-  - component: {fileID: 4882889631368556078}
-  - component: {fileID: 1421473084467855738}
+  - component: {fileID: 3559234955925279148}
+  - component: {fileID: 5240759406017541012}
+  - component: {fileID: 3066620420015881930}
   m_Layer: 5
-  m_Name: LootAxe
+  m_Name: LootShirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1016629433687652737
+--- !u!224 &3559234955925279148
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6291071436679013943}
+  m_GameObject: {fileID: 2714332710800341058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,24 +34,24 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 449.739, y: 0.16999817}
-  m_SizeDelta: {x: -1090, y: -24}
+  m_AnchoredPosition: {x: 437, y: 7}
+  m_SizeDelta: {x: -1000.5687, y: -26.3848}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &4882889631368556078
+--- !u!222 &5240759406017541012
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6291071436679013943}
+  m_GameObject: {fileID: 2714332710800341058}
   m_CullTransparentMesh: 1
---- !u!114 &1421473084467855738
+--- !u!114 &3066620420015881930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6291071436679013943}
+  m_GameObject: {fileID: 2714332710800341058}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a50d37232e4354a338451f145fb124fb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e6b39557200a164bb2a181c98f94bb5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
