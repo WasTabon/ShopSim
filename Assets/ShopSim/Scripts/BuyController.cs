@@ -64,6 +64,11 @@ namespace ShopSim.Scripts
         
         private Seller _currentSeller;
 
+        private void Awake()
+        {
+            _moneyCount = PlayerPrefs.GetInt("money", 100);
+        }
+
         private void Start()
         {
             _itemSlots = new List<Image>();
@@ -137,6 +142,9 @@ namespace ShopSim.Scripts
                 {
                     _moneyCount -= _currentSeller.GetItem().GetPrice();
                     
+                    PlayerPrefs.SetInt("money", _moneyCount);
+                    PlayerPrefs.Save();
+                    
                     Image slot = Instantiate(_itemSlot, _itemSlotsContent);
                     slot.sprite = _currentSeller.GetItem().GetIcon();
                     _itemSlots.Add(slot);
@@ -160,6 +168,16 @@ namespace ShopSim.Scripts
             }
         }
 
+        public void AddItemToInventory(Sprite sprite)
+        {
+            Image slot = Instantiate(_itemSlot, _itemSlotsContent);
+            slot.sprite = sprite;
+            _itemSlots.Add(slot);
+            _earnedMoneyCount += (int)(_currentSeller.GetItem().GetPrice() * _sellItemModifier);
+            _earnedMoneyText.text = _earnedMoneyCount.ToString();
+            _itemsSoldCount++;
+        }
+        
         public void ShowPanelDontHaveMoney()
         {
             OpenPanelMessage(_dontHaveMoneyPanel, _dontHaveMoneyScale);
@@ -172,6 +190,8 @@ namespace ShopSim.Scripts
                 if (_currentSeller != null)
                 {
                     _moneyCount -= 50;
+                    PlayerPrefs.SetInt("money", _moneyCount);
+                    PlayerPrefs.Save();
                     if (_currentSeller.GetItem().GetFake())
                     {
                         OpenPanelMessage(_fakePanel, _fakeScale);
@@ -205,6 +225,8 @@ namespace ShopSim.Scripts
             if (_buyFake == false)
             {
                 _moneyCount += (int)(_earnedMoneyCount * _sellItemModifier);
+                PlayerPrefs.SetInt("money", _moneyCount);
+                PlayerPrefs.Save();
                 _earnedMoneyCount = 0;
                 _itemsSoldCount = 0;
                 _buyFake = false;
@@ -214,6 +236,8 @@ namespace ShopSim.Scripts
             {
                 _earnedMoneyCount = 50;
                 _moneyCount += _earnedMoneyCount;
+                PlayerPrefs.SetInt("money", _moneyCount);
+                PlayerPrefs.Save();
                 _earnedMoneyCount = 0;
                 _itemsSoldCount = 0;
                 _buyFake = false;
@@ -236,6 +260,8 @@ namespace ShopSim.Scripts
         public void RemoveMoney(int count)
         {
             _moneyCount -= count;
+            PlayerPrefs.SetInt("money", _moneyCount);
+            PlayerPrefs.Save();
         }
         
         public void CloseSellFakePanel()

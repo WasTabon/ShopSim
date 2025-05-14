@@ -18,7 +18,10 @@ public class LootboxSpinner : MonoBehaviour
         public RectTransform rect;
         public string itemName;
         public bool hasPlayedSound = false;
+        public Sprite sprite;
     }
+
+    public GameObject button;
 
     public BuyController buyController;
     public List<CaseItem> caseItems; // шаблоны предметов (prefab + name)
@@ -64,7 +67,8 @@ public class LootboxSpinner : MonoBehaviour
             var spawned = new SpawnedItem
             {
                 rect = itemInstance,
-                itemName = caseItem.itemName
+                itemName = caseItem.itemName,
+                sprite = caseItem.prefab.gameObject.GetComponent<SpriteRenderer>().sprite
             };
 
             spawnedItems.Add(spawned);
@@ -76,6 +80,8 @@ public class LootboxSpinner : MonoBehaviour
         if (buyController.GetMoneyCount() - 300 >= 0)
         {
             if (isSpinning) return;
+            
+            button.SetActive(false);
 
             buyController.RemoveMoney(300);
             
@@ -141,6 +147,8 @@ public class LootboxSpinner : MonoBehaviour
 
         selectedItem = closest;
         audioSource.PlayOneShot(winSound);
+        button.SetActive(true);
+        buyController.AddItemToInventory(selectedItem.sprite);
         Debug.Log("Выпал предмет: " + selectedItem.itemName);
     }
 }
