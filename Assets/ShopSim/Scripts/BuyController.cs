@@ -66,7 +66,7 @@ namespace ShopSim.Scripts
 
         private void Awake()
         {
-            _moneyCount = PlayerPrefs.GetInt("money", 100);
+            _moneyCount = PlayerPrefs.GetInt("money", 500);
         }
 
         private void Start()
@@ -116,15 +116,15 @@ namespace ShopSim.Scripts
                 OpenNightPanel();
             }
 
-            if (_shopLevelManager.GetLevel() == 1) _sellItemModifier = 1.5f;
-            else if (_shopLevelManager.GetLevel() == 2) _sellItemModifier = 1.6f;
-            else if (_shopLevelManager.GetLevel() == 3) _sellItemModifier = 1.7f;
-            else if (_shopLevelManager.GetLevel() == 4) _sellItemModifier = 1.8f;
-            else if (_shopLevelManager.GetLevel() == 5) _sellItemModifier = 1.9f;
-            else if (_shopLevelManager.GetLevel() == 6) _sellItemModifier = 2f;
-            else if (_shopLevelManager.GetLevel() == 7) _sellItemModifier = 2.5f;
-            else if (_shopLevelManager.GetLevel() == 8) _sellItemModifier = 3f;
-            else if (_shopLevelManager.GetLevel() == 9) _sellItemModifier = 3.5f;
+            if (_shopLevelManager.GetLevel() == 1) _sellItemModifier = 2f;
+            else if (_shopLevelManager.GetLevel() == 2) _sellItemModifier = 2.6f;
+            else if (_shopLevelManager.GetLevel() == 3) _sellItemModifier = 2.7f;
+            else if (_shopLevelManager.GetLevel() == 4) _sellItemModifier = 2.8f;
+            else if (_shopLevelManager.GetLevel() == 5) _sellItemModifier = 2.9f;
+            else if (_shopLevelManager.GetLevel() == 6) _sellItemModifier = 3f;
+            else if (_shopLevelManager.GetLevel() == 7) _sellItemModifier = 3.5f;
+            else if (_shopLevelManager.GetLevel() == 8) _sellItemModifier = 4f;
+            else if (_shopLevelManager.GetLevel() == 9) _sellItemModifier = 4.5f;
         }
 
         public void SetCurrentSeller(Seller seller)
