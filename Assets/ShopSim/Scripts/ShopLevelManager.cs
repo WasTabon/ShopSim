@@ -29,8 +29,38 @@ public class ShopLevelManager : MonoBehaviour
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        LoadLevel();
     }
 
+    private void LoadLevel()
+    {
+        if (PlayerPrefs.HasKey("level"))
+        {
+            _level = PlayerPrefs.GetInt("level");
+            if (_level >= 1)
+                _level1.SetActive(false);
+            if (_level >= 2)
+                _level2.SetActive(false);
+            if (_level >= 3)
+                _level3.SetActive(false);
+            if (_level >= 4)
+                _level4.SetActive(true);
+            if (_level >= 5) 
+                _level5.SetActive(true);
+            if (_level >= 6)
+                _level6.SetActive(true);
+            if (_level >= 7) 
+                _level7.SetActive(true);
+            if (_level >= 8)
+                _level8.SetActive(true);
+            if (_level >= 9)
+            {
+                _level9.SetActive(true);
+                _upgradeButton.SetActive(false);
+            }
+        }
+    }
+    
     private void Update()
     {
         _levelText.text = $"Level {_level}";
@@ -51,6 +81,8 @@ public class ShopLevelManager : MonoBehaviour
             Instantiate(_upgradeParticle, _levelUpgradePositions[_level].position, Quaternion.identity);
             _audioSource.PlayOneShot(_upgradeSound);
             _level++;
+            PlayerPrefs.SetInt("level", _level);
+            PlayerPrefs.Save();
         }
         else
         {

@@ -22,7 +22,7 @@ public class RouletteBuy : MonoBehaviour
     
     public void OnPurchaseComlete(Product product)
     {
-        if (product.definition.id == "com.coidea.forestMatch.full")
+        if (product.definition.id == "com.lomb11.purchaseone")
         {
             Debug.Log("Complete");
             _loadingButton.SetActive(false);
@@ -31,7 +31,7 @@ public class RouletteBuy : MonoBehaviour
     }
     public void OnPurchaseFailed(Product product, PurchaseFailureDescription description)
     {
-        if (product.definition.id == "com.coidea.forestMatch.full")
+        if (product.definition.id == "com.lomb11.purchaseone")
         {
             _loadingButton.SetActive(false);
             Debug.Log($"Failed: {description.message}");
