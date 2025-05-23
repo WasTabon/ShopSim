@@ -22,6 +22,9 @@ public class LootboxSpinner : MonoBehaviour
         public Sprite sprite;
     }
 
+    public GameObject winPanel;
+    public Image _winImage;
+    
     public GameObject button;
 
     public BuyController buyController;
@@ -162,5 +165,8 @@ public class LootboxSpinner : MonoBehaviour
             Debug.Log("buy controller is null");
         }
         buyController.AddItemToInventory(selectedItem.sprite);
+        buyController.AddMoney(1000);
+        _winImage.sprite = selectedItem.sprite;
+        winPanel.SetActive(true);
     }
 }

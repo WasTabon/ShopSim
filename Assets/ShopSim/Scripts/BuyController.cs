@@ -263,6 +263,12 @@ namespace ShopSim.Scripts
             PlayerPrefs.SetInt("money", _moneyCount);
             PlayerPrefs.Save();
         }
+        public void AddMoney(int count)
+        {
+            _moneyCount += count;
+            PlayerPrefs.SetInt("money", _moneyCount);
+            PlayerPrefs.Save();
+        }
         
         public void CloseSellFakePanel()
         {
